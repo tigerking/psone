@@ -26,6 +26,11 @@
 #include "mdec.h"
 #include "gte.h"
 
+#ifdef ANDROID
+int check_paused();
+extern int psxRunning;
+#endif
+
 R3000Acpu *psxCpu = NULL;
 psxRegisters psxRegs;
 
@@ -226,7 +231,7 @@ void psxJumpTest() {
 }
 
 void psxExecuteBios() {
-	while (psxRegs.pc != 0x80030000)
+	while (psxRegs.pc != 0x80030000 && psxRunning)
 		psxCpu->ExecuteBlock();
 }
 

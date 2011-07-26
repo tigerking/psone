@@ -16,6 +16,7 @@
  ***************************************************************************/
 
 #include "stdafx.h"
+#include "spu.h"
 
 #define _IN_SPU
 
@@ -841,7 +842,11 @@ void RemoveTimer(void)
   {
    int i=0;
    while(!bThreadEnded && i<2000) {usleep(1000L);i++;} // -> wait until thread has ended
+
+#ifndef TIGER_KING
    if(thread!=(pthread_t)-1) {pthread_cancel(thread);thread=(pthread_t)-1;}  // -> cancel thread anyway
+#endif
+
   }
 
  bThreadEnded=0;                                       // no more spu is running

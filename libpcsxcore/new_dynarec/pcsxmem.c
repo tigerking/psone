@@ -12,6 +12,19 @@
 #include "emu_if.h"
 #include "pcsxmem.h"
 
+
+#ifdef TIGER_KING
+//  GPU Memory comunication
+//#include "../../gpuAPI/gpuAPI.h"
+
+void  (*GPU_writeData)    (u32  data);
+void  (*GPU_writeStatus)  (u32  data);
+u32   (*GPU_readData)     (void);
+uint32_t GPU_readStatus(void);
+
+
+#endif
+
 //#define memprintf printf
 #define memprintf(...)
 

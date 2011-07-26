@@ -56,7 +56,9 @@ void EmuUpdate() {
 	if (!Config.HLE || !hleSoftCall)
 		SysUpdate();
 
+#ifndef TIGER_KING
 	pl_frame_limit();
+#endif
 	ApplyCheats();
 }
 

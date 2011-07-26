@@ -20,6 +20,11 @@
 #include "debug.h"
 #include "socket.h"
 
+
+extern void (*GPU_updateLace)(void);
+extern void GPUupdateLace(void);
+
+
 /*
 PCSX Debug console protocol description, version 1.0
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

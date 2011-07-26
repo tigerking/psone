@@ -24,6 +24,8 @@
 extern "C" {
 #endif
 
+
+
 #include "psxcommon.h"
 
 //#define ENABLE_SIO1API 1
@@ -76,7 +78,9 @@ typedef uint32_t (CALLBACK* GPUreadStatus)(void);
 typedef uint32_t (CALLBACK* GPUreadData)(void);
 typedef void (CALLBACK* GPUreadDataMem)(uint32_t *, int);
 typedef long (CALLBACK* GPUdmaChain)(uint32_t *,uint32_t);
-typedef void (CALLBACK* GPUupdateLace)(void);
+
+//typedef void (CALLBACK* GPUupdateLace)(void);
+
 typedef long (CALLBACK* GPUconfigure)(void);
 typedef long (CALLBACK* GPUtest)(void);
 typedef void (CALLBACK* GPUabout)(void);
@@ -95,8 +99,11 @@ typedef long (CALLBACK* GPUshowScreenPic)(unsigned char *);
 typedef void (CALLBACK* GPUclearDynarec)(void (CALLBACK *callback)(void));
 typedef void (CALLBACK* GPUvBlank)(int);
 
+
+#ifndef TIGER_KING
+
 // GPU function pointers
-extern GPUupdateLace    GPU_updateLace;
+//extern GPUupdateLace    GPU_updateLace;
 extern GPUinit          GPU_init;
 extern GPUshutdown      GPU_shutdown; 
 extern GPUconfigure     GPU_configure;
@@ -119,6 +126,8 @@ extern GPUgetScreenPic  GPU_getScreenPic;
 extern GPUshowScreenPic GPU_showScreenPic;
 extern GPUclearDynarec  GPU_clearDynarec;
 extern GPUvBlank        GPU_vBlank;
+
+#endif
 
 // CD-ROM Functions
 typedef long (CALLBACK* CDRinit)(void);
@@ -404,6 +413,7 @@ void SetIsoFile(const char *filename);
 const char *GetIsoFile(void);
 boolean UsingIso(void);
 void SetCdOpenCaseTime(s64 time);
+
 
 #ifdef __cplusplus
 }

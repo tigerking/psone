@@ -23,6 +23,12 @@
 
 #include "psxcounters.h"
 
+
+void (*GPU_updateLace)(void);
+extern void GPUupdateLace(void);
+
+
+
 /******************************************************************************/
 
 typedef struct Rcnt

@@ -121,7 +121,7 @@ int GetCdromFile(u8 *mdir, u8 *time, s8 *filename) {
 		i += dir->length[0];
 
 		if (dir->flags[0] & 0x2) { // it's a dir
-			if (!strnicmp((char *)&dir->name[0], filename, dir->name_len[0])) {
+			if (!strncasecmp((char *)&dir->name[0], filename, dir->name_len[0])) {
 				if (filename[dir->name_len[0]] != '\\') continue;
 
 				filename += dir->name_len[0] + 1;
@@ -132,7 +132,7 @@ int GetCdromFile(u8 *mdir, u8 *time, s8 *filename) {
 				mdir = ddir;
 			}
 		} else {
-			if (!strnicmp((char *)&dir->name[0], filename, strlen(filename))) {
+			if (!strncasecmp((char *)&dir->name[0], filename, strlen(filename))) {
 				mmssdd(dir->extent, (char *)time);
 				break;
 			}

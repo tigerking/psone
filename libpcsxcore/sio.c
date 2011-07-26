@@ -240,6 +240,7 @@ void sioWrite8(unsigned char value) {
 					}
 					bufcount+= 3;
 
+#ifndef TIGER_KING
 					if (NET_sendPadData(buf, bufcount) == -1)
 						netError();
 
@@ -247,6 +248,7 @@ void sioWrite8(unsigned char value) {
 						netError();
 					if (NET_recvPadData(buf + 128, 2) == -1)
 						netError();
+#endif
 				} else {
 					memcpy(buf, buf + 128, 32);
 				}
@@ -344,6 +346,7 @@ unsigned short sioReadBaud16() {
 }
 
 void netError() {
+#ifndef TIGER_KING
 	ClosePlugins();
 	SysMessage(_("Connection closed!\n"));
 
@@ -351,6 +354,7 @@ void netError() {
 	CdromLabel[0] = '\0';
 
 	SysRunGui();
+#endif
 }
 
 void sioInterrupt() {

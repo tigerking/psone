@@ -27,7 +27,11 @@ extern "C" {
 int SysInit();							// Init mem and plugins
 void SysReset();						// Resets mem
 void SysPrintf(const char *fmt, ...);	// Printf used by bios syscalls
+
+#ifndef TIGER_KING
 void SysMessage(const char *fmt, ...);	// Message used to print msg to users
+#endif
+
 void *SysLoadLibrary(const char *lib);	// Loads Library
 void *SysLoadSym(void *lib, const char *sym);	// Loads Symbol from Library
 const char *SysLibError();				// Gets previous error loading sysbols
@@ -35,6 +39,11 @@ void SysCloseLibrary(void *lib);		// Closes Library
 void SysUpdate();						// Called on VBlank (to update i.e. pads)
 void SysRunGui();						// Returns to the Gui
 void SysClose();						// Close mem and plugins
+
+#ifdef TIGER_KING
+#define SysMessage LOGI
+#include "ndk_log.h"
+#endif
 
 #ifdef __cplusplus
 }
